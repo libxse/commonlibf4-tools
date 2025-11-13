@@ -241,8 +241,8 @@ void dump_rtti()
 		results.end());
 
 	constexpr std::array toRemove{
-		static_cast<std::uint64_t>(2769189),  // float
-		static_cast<std::uint64_t>(2769187),  // unsigned int
+		static_cast<std::uint64_t>(4844470),  // float
+		static_cast<std::uint64_t>(4844468),  // unsigned int
 	};
 	results.erase(
 		std::remove_if(
@@ -260,7 +260,7 @@ void dump_rtti()
 		<< "\n"sv
 		<< "namespace RE\n"sv
 		<< "{\n"sv
-		<< "\tnamespace "sv << "RTTI"sv << "\n"sv
+		<< "\tnamespace RTTI\n"sv
 		<< "\t{\n"sv;
 	for (const auto& [name, rid, vids] : results) {
 		(void)vids;
@@ -275,7 +275,7 @@ void dump_rtti()
 		<< "\n"sv
 		<< "namespace RE\n"sv
 		<< "{\n"sv
-		<< "\tnamespace "sv << "VTABLE"sv << "\n"sv
+		<< "\tnamespace VTABLE\n"sv
 		<< "\t{\n"sv;
 	const auto printVID = [&](std::uint64_t a_vid) { file << "REL::ID("sv << a_vid << ")"sv; };
 	for (const auto& [name, rid, vids] : results) {
@@ -284,7 +284,7 @@ void dump_rtti()
 		if (!svids.empty()) {
 			file << "\t\tinline constexpr std::array<REL::ID, "sv
 				 << vids.size()
-				 << "> "sv
+				 << ((vids.size() <= 9) ? ">  "sv : "> "sv)
 				 << name
 				 << "{ "sv;
 			printVID(svids.front());
@@ -304,15 +304,15 @@ void dump_nirtti()
 {
 	{
 		// fix a dumb fuckup
-		REL::Relocation<RE::NiRTTI*> rtti{ REL::ID(2690507) };
+		REL::Relocation<RE::NiRTTI*> rtti{ REL::ID(4797796) };
 		rtti->name = "BGSStaticCollection::RootFacade";
 	}
 
 	constexpr std::array seeds = {
 		2703473,  // NiObject
 		2703545,  // NiCullingProcess
-		2692702,  // BSFaceGenMorphData
-		2693100,  // BSTempEffect
+		4799994,  // BSFaceGenMorphData
+		4800392,  // BSTempEffect
 		2707081,  // bhkCharacterProxy
 		2707083,  // bhkCharacterRigidBody
 		2704798,  // bhkNPCollisionObject
