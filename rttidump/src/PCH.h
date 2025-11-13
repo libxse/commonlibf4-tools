@@ -19,5 +19,4 @@
 #include <utility>
 #include <vector>
 
-namespace stl = F4SE::stl;
 using namespace std::literals;
